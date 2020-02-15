@@ -88,6 +88,7 @@ class ImageUpload extends React.Component {
                     <button className="submitButton"
                             type="submit"
                             onClick={(e)=>this._handleSubmit(e)}>Color Image</button>
+
                 </form>
                 <Container>
                     <Row className="justify-content-md-center">
