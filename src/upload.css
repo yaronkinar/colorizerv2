@@ -13,12 +13,11 @@ h3 {
 .imgPreview {
     text-align: center;
     margin: 5px 15px;
-    height: 200px;
-    width: 500px;
-    border-left: 1px solid #808080;
+
+   /* border-left: 1px solid #808080;
     border-right: 1px solid #808080;
     border-top: 5px solid #808080;
-    border-bottom: 5px solid #808080;
+    border-bottom: 5px solid #808080;*/
 }
 .imgPreview img {
     width: 100%;

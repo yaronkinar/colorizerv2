@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 
 
 import Spinner from "react-bootstrap/Spinner";
@@ -65,12 +66,12 @@ class ImageUpload extends React.Component {
         let $imageResultPreview = null;
 
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} />);
+            $imagePreview = (<Image fluid src={imagePreviewUrl} />);
         } else {
             $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
         }
         if(imageResult){
-            $imageResultPreview = (<img src={imageResult} />)
+            $imageResultPreview = (<Image fluid src={imageResult} />)
         }
         if(loading){
             $imageResultPreview = (<Spinner animation="border" />)
@@ -85,7 +86,7 @@ class ImageUpload extends React.Component {
                            ref={this.image}
                            onChange={(e)=>this._handleImageChange(e)} />
 
-                    <Button as="input" size="sm"  type="submit" value="Color Image" onClick={(e)=>this._handleSubmit(e)}/>
+                    <Button as="input" size="sm"  type="submit" disabled={!this.state.imagePreviewUrl} value="Color Image" onClick={(e)=>this._handleSubmit(e)}/>
 
                    {/* <button className="submitButton"
                             type="submit"
