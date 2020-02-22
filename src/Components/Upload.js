@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
-
+import BeforeAfterSlider from 'react-before-after-slider'
 import Spinner from "react-bootstrap/Spinner";
 import '../upload.css';
 const deepai = require("deepai")
@@ -64,14 +64,25 @@ class ImageUpload extends React.Component {
         let {loading} = this.state;
         let $imagePreview = null;
         let $imageResultPreview = null;
-
+        let link = null;
+        let before = imagePreviewUrl;
+        let after = imageResult
+        let beaforAfter = null
         if (imagePreviewUrl) {
             $imagePreview = (<Image fluid src={imagePreviewUrl} />);
+            beaforAfter = (<BeforeAfterSlider
+                before={before}
+                after={after}
+                width={640}
+                height={480}
+            />)
         } else {
             $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
         }
         if(imageResult){
             $imageResultPreview = (<Image fluid src={imageResult} />)
+            link = (<a href={imageResult} download>Open Image</a>)
+
         }
         if(loading){
             $imageResultPreview = (<Spinner animation="border" />)
@@ -86,8 +97,16 @@ class ImageUpload extends React.Component {
                            ref={this.image}
                            onChange={(e)=>this._handleImageChange(e)} />
 
-                    <Button as="input" size="sm"  type="submit" disabled={!this.state.imagePreviewUrl} value="Color Image" onClick={(e)=>this._handleSubmit(e)}/>
-
+{/*
+                    <Button as="input" size="sm"  type="submit" disabled={!this.state.imagePreviewUrl}  value="{loading ? 'Loading…' : 'Color Image'} " onClick={(e)=>this._handleSubmit(e)}/>
+*/}
+                    <Button
+                        variant="primary"
+                        disabled={!this.state.imagePreviewUrl}
+                        onClick={!loading ? (e)=>this._handleSubmit(e) : null}
+                    >
+                        {loading ? 'Loading…' : 'Color Image'}
+                    </Button>
                    {/* <button className="submitButton"
                             type="submit"
                             onClick={(e)=>this._handleSubmit(e)}>Color Image</button>*/}
@@ -103,8 +122,25 @@ class ImageUpload extends React.Component {
                             <div className="imgPreview justify-content-md-center" >
                                 {$imageResultPreview}
                             </div>
-                    </Col>
+
+                        </Col>
                     </Row>
+                    <Row className="justify-content-md-center">
+                        <Col md="auto">
+                            {link}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                           {/* <BeforeAfterSlider
+                                before={before}
+                                after={after}
+                                width={640}
+                                height={480}
+                            />*/}
+                        </Col>
+                    </Row>
+
                 </Container>
 
             </div>
