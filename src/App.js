@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
         <Navbar bg="light" variant="light">
-            <Navbar.Brand href="#home">Colorizer</Navbar.Brand>
+            <Navbar.Brand href="#home">Colorizer and Toonifier</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
 

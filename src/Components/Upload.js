@@ -133,8 +133,8 @@ class ImageUpload extends React.Component {
                     >
                         {loading ? 'Loading…' : 'Color Image'}
                     </Button>
-                    <Button
-                        variant="primary"
+                    <Button className="ml-1"
+                        variant="secondary"
                         disabled={!this.state.imagePreviewUrl}
                         onClick={!loading ? (e)=>this.toonify(e) : null}
                     >
