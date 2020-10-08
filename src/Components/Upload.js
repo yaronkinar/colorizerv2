@@ -41,6 +41,31 @@ class ImageUpload extends React.Component {
         // TODO: do something with -> this.state.file
         console.log('handle uploading-', this.state.file);
     }
+    toonify= (e) => {
+        e.preventDefault();
+        console.log(deepai)
+        deepai.setApiKey('292a51da-6e6d-41da-9eaa-e8dd12ea0b04');
+        const node = this.image.current;
+        (async ()=> {
+
+            this.setState({
+                loading:true
+            })
+            var resp = await deepai.callStandardApi("toonify", {
+                image: node,
+            });
+            console.log(resp)
+
+            this.setState({
+                imageResult:resp.output_url,
+                loading:false
+            })
+         //   $("#container").attr('src', resp.output_url)
+
+        })()
+        // TODO: do something with -> this.state.file
+        console.log('handle uploading-', this.state.file);
+    }
 
     _handleImageChange(e) {
         e.preventDefault();
@@ -106,6 +131,13 @@ class ImageUpload extends React.Component {
                         onClick={!loading ? (e)=>this._handleSubmit(e) : null}
                     >
                         {loading ? 'Loading…' : 'Color Image'}
+                    </Button>
+                    <Button
+                        variant="primary"
+                        disabled={!this.state.imagePreviewUrl}
+                        onClick={!loading ? (e)=>this.toonify(e) : null}
+                    >
+                        {loading ? 'Loading…' : 'toonify'}
                     </Button>
                    {/* <button className="submitButton"
                             type="submit"
